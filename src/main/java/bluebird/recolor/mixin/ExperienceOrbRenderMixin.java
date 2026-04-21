@@ -22,7 +22,7 @@ public class ExperienceOrbRenderMixin {
     private static void vertex(VertexConsumer vertexConsumer, PoseStack.Pose pose, float f, float g, int i, int j, int k, float h, float l, int m) {}
 
     @ModifyArg(method = "submit(Lnet/minecraft/client/renderer/entity/state/ExperienceOrbRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/CameraRenderState;)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/SubmitNodeCollector;submitCustomGeometry(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/rendertype/RenderType;Lnet/minecraft/client/renderer/SubmitNodeCollector$CustomGeometryRenderer;)V"), index = 2)
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/SubmitNodeCollector;submitCustomGeometry(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/SubmitNodeCollector$CustomGeometryRenderer;)V"), index = 2)
     private static SubmitNodeCollector.CustomGeometryRenderer recolors$changeXpOrbColors(SubmitNodeCollector.CustomGeometryRenderer customGeometryRenderer, @Local(argsOnly = true, ordinal = 0) ExperienceOrbRenderState state, @Local(ordinal = 0) float f, @Local(ordinal = 2) float h, @Local(ordinal = 1) float g, @Local(ordinal = 3) float j) {
         int xp1 = Colors.xpOrb1;
         int xp2 = Colors.xpOrb2;

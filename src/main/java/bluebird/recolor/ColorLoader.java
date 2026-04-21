@@ -1,7 +1,7 @@
 package bluebird.recolor;
 
 import com.google.gson.*;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.ARGB;
@@ -14,7 +14,7 @@ import java.util.*;
 public class ColorLoader {
     private static final Map<Field, Integer> DEFAULT_VALUES = new HashMap<>();
 
-    public static final Identifier LOCATION = Identifier.fromNamespaceAndPath(RecolorMain.MOD_ID, "colors.json");
+    public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(RecolorMain.MOD_ID, "colors.json");
     private static final Map<String, Field> FIELD_MAP = new HashMap<>();
 
     static {

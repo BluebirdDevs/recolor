@@ -10,8 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(OverlayTexture.class)
 public class OverlayTextureMixin {
@@ -22,13 +21,13 @@ public class OverlayTextureMixin {
     @Unique
     private int lastColor;
 
-    @Inject(method = "getTextureView", at = @At(value = "HEAD"))
-    public void recolor$getTextureView(CallbackInfoReturnable<GpuTextureView> cir) {
+    @ModifyArg(method = "setupOverlayColor", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setupOverlayColor(Lcom/mojang/blaze3d/textures/GpuTextureView;)V"))
+    public GpuTextureView recolor$getTextureView(GpuTextureView gpuTextureView) {
         if (lastColor == Colors.damageColor) {
-            return; // Don't update every tick
+            return gpuTextureView;
         }
         NativeImage pixels = this.texture.getPixels();
-        if (pixels == null) return;
+        if (pixels == null) return gpuTextureView;
         for(int y = 0; y < 8; ++y) {
             for(int x = 0; x < 16; ++x) {
                 pixels.setPixel(x, y, Colors.damageColor);
@@ -36,5 +35,6 @@ public class OverlayTextureMixin {
         }
         this.texture.upload();
         lastColor = Colors.damageColor;
+        return gpuTextureView;
     }
 }
