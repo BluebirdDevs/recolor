@@ -1,7 +1,7 @@
 {
 	"required": true,
 	"package": "bluebird.recolor.mixin",
-	"compatibilityLevel": "JAVA_25",
+	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 	],
 	"injectors": {
@@ -11,7 +11,6 @@
 		"requireAnnotations": true
 	},
 	"client": [
-		"AbstractContainerMenuMixin",
 		"AbstractContainerScreenMixin",
 		"AnvilScreenMixin",
 		"ContextualBarRendererMixin",
