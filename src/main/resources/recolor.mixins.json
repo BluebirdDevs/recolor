@@ -1,0 +1,31 @@
+{
+	"required": true,
+	"package": "bluebird.recolor.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"mixins": [
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	},
+	"client": [
+		"AbstractContainerMenuMixin",
+		"AbstractContainerScreenMixin",
+		"AnvilScreenMixin",
+		"ContextualBarRendererMixin",
+		"EnchantmentScreenMixin",
+		"ExperienceOrbRenderMixin",
+		"GuiGraphicsExtractorMixin",
+		"InventoryScreenMixin",
+		"ItemMixin",
+		"LevelRendererMixin",
+		"LoadingOverlayMixin",
+		"OverlayTextureMixin",
+		"PlayerEntryMixin",
+		"ScreenMixin",
+		"TransferableSelectionList_PackEntryMixin",
+		"WorldSelectionListMixin"
+	]
+}

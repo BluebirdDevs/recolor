@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "recolor",
+	"version": "${version}",
+	"name": "Recolor",
+	"description": "Allows changing hardcoded colors in the game with a resource pack",
+	"authors": [
+		"BluebirdDevs"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/project/recolor",
+		"sources": "https://github.com/BluebirdDevs/recolor",
+		"issues": "https://github.com/BluebirdDevs/recolor/issues"
+	},
+	"license": "",
+	"icon": "assets/recolor/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"bluebird.recolor.RecolorMain"
+		]
+	},
+	"mixins": [
+      "recolor.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~26.1",
+		"fabric-api": "*"
+	}
+}
