@@ -9,10 +9,10 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(AnvilScreen.class)
 public class AnvilScreenMixin {
     @ModifyArg(
-            method = "extractLabels",
+            method = "renderLabels",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;text(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V"),
+                    target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V"),
             index = 4)
     public int recolors$ChangeAnvilTextColor(int og){
         if (og == -8323296) {

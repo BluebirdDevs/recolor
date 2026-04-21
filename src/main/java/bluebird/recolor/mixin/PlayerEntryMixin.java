@@ -8,12 +8,12 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(PlayerEntry.class)
 public class PlayerEntryMixin {
-    @ModifyArg(method = "extractContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;fill(IIIII)V", ordinal = 0), index = 4)
+    @ModifyArg(method = "renderContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;fill(IIIII)V", ordinal = 0), index = 4)
     private int extractColor(int color) {
         return Colors.socialInteractionsPlayerBackground;
     }
 
-    @ModifyArg(method = "extractContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;fill(IIIII)V", ordinal = 1), index = 4)
+    @ModifyArg(method = "renderContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;fill(IIIII)V", ordinal = 1), index = 4)
     private int extractColorHidden(int color) {
         return Colors.socialInteractionsPlayerBackgroundHidden;
     }

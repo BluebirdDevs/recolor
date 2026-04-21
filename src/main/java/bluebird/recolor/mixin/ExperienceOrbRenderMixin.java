@@ -2,19 +2,28 @@ package bluebird.recolor.mixin;
 
 import bluebird.recolor.Colors;
 import com.llamalad7.mixinextras.sugar.Local;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.ExperienceOrbRenderer;
 import net.minecraft.client.renderer.entity.state.ExperienceOrbRenderState;
 import net.minecraft.util.Mth;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArgs;
-import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(ExperienceOrbRenderer.class)
 public class ExperienceOrbRenderMixin {
-    @ModifyArgs(method = "lambda$submit$0",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/ExperienceOrbRenderer;vertex(Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;FFIIIFFI)V"))
-    private static void recolors$changeXpOrbColors(Args args, @Local(argsOnly = true, name = "state") ExperienceOrbRenderState state) {
+
+    @Shadow
+    @Final
+    private static void vertex(VertexConsumer vertexConsumer, PoseStack.Pose pose, float f, float g, int i, int j, int k, float h, float l, int m) {}
+
+    @ModifyArg(method = "submit(Lnet/minecraft/client/renderer/entity/state/ExperienceOrbRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/CameraRenderState;)V",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/SubmitNodeCollector;submitCustomGeometry(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/rendertype/RenderType;Lnet/minecraft/client/renderer/SubmitNodeCollector$CustomGeometryRenderer;)V"), index = 2)
+    private static SubmitNodeCollector.CustomGeometryRenderer recolors$changeXpOrbColors(SubmitNodeCollector.CustomGeometryRenderer customGeometryRenderer, @Local(argsOnly = true, name = "experienceOrbRenderState") ExperienceOrbRenderState state, @Local(name = "f") float f, @Local(name = "h") float h, @Local(name = "g") float g, @Local(name = "j") float j) {
         int xp1 = Colors.xpOrb1;
         int xp2 = Colors.xpOrb2;
 
@@ -24,8 +33,11 @@ public class ExperienceOrbRenderMixin {
         int gc = (int) Mth.lerp(t, (float)((xp1 >> 8) & 0xFF), (float)((xp2 >> 8) & 0xFF));
         int bc = (int) Mth.lerp(t, (float)(xp1 & 0xFF), (float)(xp2 & 0xFF));
 
-        args.set(4, rc);
-        args.set(5, gc);
-        args.set(6, bc);
+        return (pose, vertexConsumer) -> {
+            vertex(vertexConsumer, pose, -0.5F, -0.25F, rc, gc, bc, f, j, state.lightCoords);
+            vertex(vertexConsumer, pose, 0.5F, -0.25F, rc, gc, bc, g, j, state.lightCoords);
+            vertex(vertexConsumer, pose, 0.5F, 0.75F, rc, gc, bc, g, h, state.lightCoords);
+            vertex(vertexConsumer, pose, -0.5F, 0.75F, rc, gc, bc, f, h, state.lightCoords);
+        };
     }
 }

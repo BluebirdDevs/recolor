@@ -9,10 +9,10 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(ContextualBarRenderer.class)
 public interface ContextualBarRendererMixin {
     @ModifyArg(
-            method = "extractExperienceLevel",
+            method = "renderExperienceLevel",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;text(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;IIIZ)V"),
+                    target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;IIIZ)V"),
             index = 4)
     private static int recolor$ChangeXPTextColor(int x) {
         if (x == -16777216) {
