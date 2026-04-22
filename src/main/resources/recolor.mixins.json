@@ -12,6 +12,7 @@
 	},
 	"client": [
 		"AbstractContainerScreenMixin",
+		"AdvancementsScreenMixin",
 		"AnvilScreenMixin",
 		"ContextualBarRendererMixin",
 		"EnchantmentScreenMixin",
@@ -24,7 +25,6 @@
 		"OverlayTextureMixin",
 		"PlayerEntryMixin",
 		"ScreenMixin",
-		"TransferableSelectionList_PackEntryMixin",
-		"WorldSelectionListMixin"
+		"IconHoverEntryMixin"
 	]
 }
