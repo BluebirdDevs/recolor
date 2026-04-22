@@ -16,7 +16,7 @@ public class RecolorMain implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ResourceLoader.get(ResourceType.CLIENT_RESOURCES).registerReloader(
-				Identifier.of(MOD_ID, "reloader_name"),
+				Identifier.of(MOD_ID, "recolor"),
                 new ColorReloadListener()
         );
 	}
