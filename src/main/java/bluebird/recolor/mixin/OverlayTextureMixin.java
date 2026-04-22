@@ -1,7 +1,8 @@
 package bluebird.recolor.mixin;
 
 import bluebird.recolor.Colors;
-import com.mojang.blaze3d.textures.GpuTexture;
+import bluebird.recolor.ReloadListener;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
@@ -10,31 +11,43 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(OverlayTexture.class)
-public class OverlayTextureMixin {
+public class OverlayTextureMixin implements ReloadListener {
 
     @Shadow @Final
     private NativeImageBackedTexture texture;
 
-    @Unique
-    private int lastColor;
+    @Inject(method = "<init>", at = @At(value = "TAIL"))
+    public void recolor$addReloader(CallbackInfo ci) {
+        ReloadListener.addListener(this);
+    }
 
-    @ModifyArg(method = "setupOverlayColor", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setupOverlayColor(Lcom/mojang/blaze3d/textures/GpuTexture;)V"))
-    public GpuTexture recolor$getTextureView(GpuTexture gpuTextureView) {
-        if (lastColor == Colors.damageColor) {
-            return gpuTextureView;
-        }
-        NativeImage pixels = this.texture.getImage();
-        if (pixels == null) return gpuTextureView;
+    @Unique
+    public void recolor$changeOverlayTexture() {
+        NativeImage nativeImage = this.texture.getImage();
+
+        if (nativeImage == null) return;
+
         for(int y = 0; y < 8; ++y) {
             for(int x = 0; x < 16; ++x) {
-                pixels.setColorArgb(x, y, Colors.damageColor);
+                nativeImage.setColorArgb(x, y, Colors.damageColor);
             }
         }
-        this.texture.upload();
-        lastColor = Colors.damageColor;
-        return gpuTextureView;
+
+        RenderSystem.activeTexture(33985);
+        this.texture.bindTexture();
+        this.texture.setFilter(false, false);
+        this.texture.setClamp(true);
+        nativeImage.upload(0, 0, 0, 0, 0, nativeImage.getWidth(), nativeImage.getHeight(), false);
+        RenderSystem.activeTexture(33984);
+
+    }
+
+    @Override
+    public void recolor$reload() {
+        recolor$changeOverlayTexture();
     }
 }

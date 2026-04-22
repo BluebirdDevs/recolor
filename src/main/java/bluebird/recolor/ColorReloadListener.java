@@ -8,6 +8,7 @@ public class ColorReloadListener implements SimpleSynchronousResourceReloadListe
     @Override
     public void reload(ResourceManager resourceManager) {
         ColorLoader.reload(resourceManager);
+        ReloadListener.reloadAll();
     }
 
     @Override
