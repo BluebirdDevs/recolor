@@ -39,9 +39,7 @@ public class OverlayTextureMixin implements ReloadListener {
 
         RenderSystem.activeTexture(33985);
         this.texture.bindTexture();
-        this.texture.setFilter(false, false);
-        this.texture.setClamp(true);
-        nativeImage.upload(0, 0, 0, 0, 0, nativeImage.getWidth(), nativeImage.getHeight(), false);
+        nativeImage.upload(0, 0, 0, 0, 0, nativeImage.getWidth(), nativeImage.getHeight(), false, true, false, false);
         RenderSystem.activeTexture(33984);
 
     }
