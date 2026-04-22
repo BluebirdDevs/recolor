@@ -80,13 +80,13 @@ public class ColorLoader {
                 int r = MathHelper.clamp(Integer.parseInt(hex.substring(0, 2), 16), 0, 255);
                 int g = MathHelper.clamp(Integer.parseInt(hex.substring(2, 4), 16), 0, 255);
                 int b = MathHelper.clamp(Integer.parseInt(hex.substring(4, 6), 16), 0, 255);
-                return ColorHelper.getArgb(r, g, b);
+                return ColorHelper.Argb.getArgb(r, g, b);
             } else if (hex.length() == 8) {
                 int a = MathHelper.clamp(Integer.parseInt(hex.substring(0, 2), 16), 0, 255);
                 int r = MathHelper.clamp(Integer.parseInt(hex.substring(2, 4), 16), 0, 255);
                 int g = MathHelper.clamp(Integer.parseInt(hex.substring(4, 6), 16), 0, 255);
                 int b = MathHelper.clamp(Integer.parseInt(hex.substring(6, 8), 16), 0, 255);
-                return ColorHelper.getArgb(a, r, g, b);
+                return ColorHelper.Argb.getArgb(a, r, g, b);
             }
 
             throw new IllegalArgumentException("Invalid hex color: " + hex);
@@ -98,13 +98,13 @@ public class ColorLoader {
                 int r = MathHelper.clamp(arr.get(0).getAsInt(), 0, 255);
                 int g = MathHelper.clamp(arr.get(1).getAsInt(), 0, 255);
                 int b = MathHelper.clamp(arr.get(2).getAsInt(), 0, 255);
-                return ColorHelper.getArgb(r, g, b);
+                return ColorHelper.Argb.getArgb(r, g, b);
             } else if (arr.size() == 4) {
                 int r = MathHelper.clamp(arr.get(0).getAsInt(), 0, 255);
                 int g = MathHelper.clamp(arr.get(1).getAsInt(), 0, 255);
                 int b = MathHelper.clamp(arr.get(2).getAsInt(), 0, 255);
                 int a = MathHelper.clamp(arr.get(3).getAsInt(), 0, 255);
-                return ColorHelper.getArgb(a, r, g, b);
+                return ColorHelper.Argb.getArgb(a, r, g, b);
             }
 
             throw new IllegalArgumentException("Color array must have 3 or 4 elements (RGB / RGBA)");

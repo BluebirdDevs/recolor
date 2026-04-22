@@ -6,6 +6,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
+import net.minecraft.util.math.ColorHelper;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,12 +29,18 @@ public class OverlayTextureMixin implements ReloadListener {
     @Unique
     public void recolor$changeOverlayTexture() {
         NativeImage nativeImage = this.texture.getImage();
+        int color = Colors.damageColor;
+        int a = (color >> 24) & 0xFF;
+        int r = (color >> 16) & 0xFF;
+        int g = (color >> 8) & 0xFF;
+        int b = color & 0xFF;
+        int newColor = ColorHelper.Argb.getArgb(a, b, g, r); // Why is this backwards?
 
         if (nativeImage == null) return;
 
         for(int y = 0; y < 8; ++y) {
             for(int x = 0; x < 16; ++x) {
-                nativeImage.setColorArgb(x, y, Colors.damageColor);
+                nativeImage.setColor(x, y, newColor);
             }
         }
 

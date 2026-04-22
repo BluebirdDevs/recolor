@@ -3,7 +3,7 @@ package bluebird.recolor.mixin;
 import bluebird.recolor.Colors;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.render.entity.ExperienceOrbEntityRenderer;
-import net.minecraft.client.render.entity.state.ExperienceOrbEntityRenderState;
+import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,9 +12,9 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(ExperienceOrbEntityRenderer.class)
 public class ExperienceOrbRenderMixin {
-    @ModifyArgs(method = "render(Lnet/minecraft/client/render/entity/state/ExperienceOrbEntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
+    @ModifyArgs(method = "render(Lnet/minecraft/entity/ExperienceOrbEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/ExperienceOrbEntityRenderer;vertex(Lnet/minecraft/client/render/VertexConsumer;Lnet/minecraft/client/util/math/MatrixStack$Entry;FFIIIFFI)V"))
-    private static void recolors$changeXpOrbColors(Args args, @Local(argsOnly = true, ordinal = 0) ExperienceOrbEntityRenderState state) {
+    private static void recolors$changeXpOrbColors(Args args, @Local(argsOnly = true, ordinal = 0) ExperienceOrbEntity state) {
         int xp1 = Colors.xpOrb1;
         int xp2 = Colors.xpOrb2;
 

@@ -11,8 +11,8 @@ public class Colors {
     public static int xpOrb1 = 0x00FF00;
     public static int xpOrb2 = 0xFFFF33;
 
-    public static int loadingScreen = ColorHelper.getArgb(255, 239, 50, 61);
-    public static int loadingScreenMonochrome = ColorHelper.getArgb(255, 0, 0, 0);
+    public static int loadingScreen = ColorHelper.Argb.getArgb(255, 239, 50, 61);
+    public static int loadingScreenMonochrome = ColorHelper.Argb.getArgb(255, 0, 0, 0);
 
     public static int cooldown = Integer.MAX_VALUE;
     public static int slotDragBackground = -2130706433;
@@ -23,8 +23,8 @@ public class Colors {
     public static int containerTitle = -12566464;
     public static int containerBackground = -1072689136;
 
-    public static int socialInteractionsPlayerBackground = ColorHelper.getArgb(255, 74, 74, 74);
-    public static int socialInteractionsPlayerBackgroundHidden = ColorHelper.getArgb(255, 48, 48, 48);
+    public static int socialInteractionsPlayerBackground = ColorHelper.Argb.getArgb(255, 74, 74, 74);
+    public static int socialInteractionsPlayerBackgroundHidden = ColorHelper.Argb.getArgb(255, 48, 48, 48);
 
     public static int blockOutline = 1711276032;
 
