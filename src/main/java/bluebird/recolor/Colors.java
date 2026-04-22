@@ -17,7 +17,7 @@ public class Colors {
     public static int cooldown = Integer.MAX_VALUE;
     public static int slotDragBackground = -2130706433;
 
-    // World icon and Resource Pack hover background
+    // World, Resource Pack, and Server list icons hover background
     public static int previewIconHover = -1601138544;
 
     public static int containerTitle = -12566464;
