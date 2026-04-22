@@ -1,7 +1,7 @@
 package bluebird.recolor.mixin;
 
 import bluebird.recolor.Colors;
-import net.minecraft.client.gui.screens.inventory.AnvilScreen;
+import net.minecraft.client.gui.screen.ingame.AnvilScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -9,10 +9,10 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(AnvilScreen.class)
 public class AnvilScreenMixin {
     @ModifyArg(
-            method = "renderLabels",
+            method = "drawForeground",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V"),
+                    target = "Lnet/minecraft/client/gui/DrawContext;drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)V"),
             index = 4)
     public int recolors$ChangeAnvilTextColor(int og){
         if (og == -8323296) {

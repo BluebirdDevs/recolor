@@ -1,11 +1,11 @@
 package bluebird.recolor;
 
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
+import net.minecraft.resource.ResourceManager;
+import net.minecraft.resource.SynchronousResourceReloader;
 
-public class ColorReloadListener implements ResourceManagerReloadListener {
+public class ColorReloadListener implements SynchronousResourceReloader {
     @Override
-    public void onResourceManagerReload(ResourceManager resourceManager) {
+    public void reload(ResourceManager resourceManager) {
         ColorLoader.reload(resourceManager);
     }
 }

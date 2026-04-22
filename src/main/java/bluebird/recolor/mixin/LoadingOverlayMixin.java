@@ -1,7 +1,6 @@
 package bluebird.recolor.mixin;
 
 import bluebird.recolor.Colors;
-import net.minecraft.client.gui.screens.LoadingOverlay;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
@@ -9,12 +8,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 import java.util.function.IntSupplier;
+import net.minecraft.client.gui.screen.SplashOverlay;
 
-@Mixin(LoadingOverlay.class)
+@Mixin(SplashOverlay.class)
 public class LoadingOverlayMixin {
     @ModifyArgs(
             method = "render",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;fill(IIIII)V")
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;fill(IIIII)V")
     )
     public void test(Args args) {
         if (((int) args.get(4) & 0xFFFFFF) == 0) {

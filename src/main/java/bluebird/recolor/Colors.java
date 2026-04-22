@@ -1,6 +1,6 @@
 package bluebird.recolor;
 
-import net.minecraft.util.ARGB;
+import net.minecraft.util.math.ColorHelper;
 
 public class Colors {
     public static int xpText = -8323296;
@@ -11,8 +11,8 @@ public class Colors {
     public static int xpOrb1 = 0x00FF00;
     public static int xpOrb2 = 0xFFFF33;
 
-    public static int loadingScreen = ARGB.color(255, 239, 50, 61);
-    public static int loadingScreenMonochrome = ARGB.color(255, 0, 0, 0);
+    public static int loadingScreen = ColorHelper.getArgb(255, 239, 50, 61);
+    public static int loadingScreenMonochrome = ColorHelper.getArgb(255, 0, 0, 0);
 
     public static int cooldown = Integer.MAX_VALUE;
     public static int slotDragBackground = -2130706433;
@@ -23,8 +23,8 @@ public class Colors {
     public static int containerTitle = -12566464;
     public static int containerBackground = -1072689136;
 
-    public static int socialInteractionsPlayerBackground = ARGB.color(255, 74, 74, 74);
-    public static int socialInteractionsPlayerBackgroundHidden = ARGB.color(255, 48, 48, 48);
+    public static int socialInteractionsPlayerBackground = ColorHelper.getArgb(255, 74, 74, 74);
+    public static int socialInteractionsPlayerBackgroundHidden = ColorHelper.getArgb(255, 48, 48, 48);
 
     public static int blockOutline = 1711276032;
 

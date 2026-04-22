@@ -3,8 +3,8 @@ package bluebird.recolor;
 import net.fabricmc.api.ClientModInitializer;
 
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.PackType;
+import net.minecraft.resource.ResourceType;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,8 +15,8 @@ public class RecolorMain implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		ResourceLoader.get(PackType.CLIENT_RESOURCES).registerReloader(
-				ResourceLocation.fromNamespaceAndPath(MOD_ID, "reloader_name"),
+		ResourceLoader.get(ResourceType.CLIENT_RESOURCES).registerReloader(
+				Identifier.of(MOD_ID, "reloader_name"),
                 new ColorReloadListener()
         );
 	}

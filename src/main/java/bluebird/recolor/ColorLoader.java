@@ -1,20 +1,19 @@
 package bluebird.recolor;
 
 import com.google.gson.*;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.util.ARGB;
-import net.minecraft.util.Mth;
-
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.util.*;
+import net.minecraft.resource.Resource;
+import net.minecraft.resource.ResourceManager;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.ColorHelper;
+import net.minecraft.util.math.MathHelper;
 
 public class ColorLoader {
     private static final Map<Field, Integer> DEFAULT_VALUES = new HashMap<>();
 
-    public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(RecolorMain.MOD_ID, "colors.json");
+    public static final Identifier LOCATION = Identifier.of(RecolorMain.MOD_ID, "colors.json");
     private static final Map<String, Field> FIELD_MAP = new HashMap<>();
 
     static {
@@ -44,11 +43,11 @@ public class ColorLoader {
         try {
             resetToDefaults();
 
-            List<Resource> stack = resourceManager.getResourceStack(LOCATION);
+            List<Resource> stack = resourceManager.getAllResources(LOCATION);
 
             for (Resource res : stack) {
                 JsonObject json = JsonParser.parseReader(
-                        new InputStreamReader(res.open())
+                        new InputStreamReader(res.getInputStream())
                 ).getAsJsonObject();
 
                 apply(json);
@@ -78,16 +77,16 @@ public class ColorLoader {
             String hex = element.getAsString().replace("#", "").toLowerCase();
 
             if (hex.length() == 6) {
-                int r = Mth.clamp(Integer.parseInt(hex.substring(0, 2), 16), 0, 255);
-                int g = Mth.clamp(Integer.parseInt(hex.substring(2, 4), 16), 0, 255);
-                int b = Mth.clamp(Integer.parseInt(hex.substring(4, 6), 16), 0, 255);
-                return ARGB.color(r, g, b);
+                int r = MathHelper.clamp(Integer.parseInt(hex.substring(0, 2), 16), 0, 255);
+                int g = MathHelper.clamp(Integer.parseInt(hex.substring(2, 4), 16), 0, 255);
+                int b = MathHelper.clamp(Integer.parseInt(hex.substring(4, 6), 16), 0, 255);
+                return ColorHelper.getArgb(r, g, b);
             } else if (hex.length() == 8) {
-                int a = Mth.clamp(Integer.parseInt(hex.substring(0, 2), 16), 0, 255);
-                int r = Mth.clamp(Integer.parseInt(hex.substring(2, 4), 16), 0, 255);
-                int g = Mth.clamp(Integer.parseInt(hex.substring(4, 6), 16), 0, 255);
-                int b = Mth.clamp(Integer.parseInt(hex.substring(6, 8), 16), 0, 255);
-                return ARGB.color(a, r, g, b);
+                int a = MathHelper.clamp(Integer.parseInt(hex.substring(0, 2), 16), 0, 255);
+                int r = MathHelper.clamp(Integer.parseInt(hex.substring(2, 4), 16), 0, 255);
+                int g = MathHelper.clamp(Integer.parseInt(hex.substring(4, 6), 16), 0, 255);
+                int b = MathHelper.clamp(Integer.parseInt(hex.substring(6, 8), 16), 0, 255);
+                return ColorHelper.getArgb(a, r, g, b);
             }
 
             throw new IllegalArgumentException("Invalid hex color: " + hex);
@@ -96,16 +95,16 @@ public class ColorLoader {
         if (element.isJsonArray()) {
             JsonArray arr = element.getAsJsonArray();
             if (arr.size() == 3) {
-                int r = Mth.clamp(arr.get(0).getAsInt(), 0, 255);
-                int g = Mth.clamp(arr.get(1).getAsInt(), 0, 255);
-                int b = Mth.clamp(arr.get(2).getAsInt(), 0, 255);
-                return ARGB.color(r, g, b);
+                int r = MathHelper.clamp(arr.get(0).getAsInt(), 0, 255);
+                int g = MathHelper.clamp(arr.get(1).getAsInt(), 0, 255);
+                int b = MathHelper.clamp(arr.get(2).getAsInt(), 0, 255);
+                return ColorHelper.getArgb(r, g, b);
             } else if (arr.size() == 4) {
-                int r = Mth.clamp(arr.get(0).getAsInt(), 0, 255);
-                int g = Mth.clamp(arr.get(1).getAsInt(), 0, 255);
-                int b = Mth.clamp(arr.get(2).getAsInt(), 0, 255);
-                int a = Mth.clamp(arr.get(3).getAsInt(), 0, 255);
-                return ARGB.color(a, r, g, b);
+                int r = MathHelper.clamp(arr.get(0).getAsInt(), 0, 255);
+                int g = MathHelper.clamp(arr.get(1).getAsInt(), 0, 255);
+                int b = MathHelper.clamp(arr.get(2).getAsInt(), 0, 255);
+                int a = MathHelper.clamp(arr.get(3).getAsInt(), 0, 255);
+                return ColorHelper.getArgb(a, r, g, b);
             }
 
             throw new IllegalArgumentException("Color array must have 3 or 4 elements (RGB / RGBA)");
