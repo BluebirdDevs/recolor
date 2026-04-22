@@ -12,19 +12,19 @@
 	},
 	"client": [
 		"AbstractContainerScreenMixin",
+		"AdvancementsScreenMixin",
 		"AnvilScreenMixin",
 		"ContextualBarRendererMixin",
 		"EnchantmentScreenMixin",
 		"ExperienceOrbRenderMixin",
 		"GuiGraphicsExtractorMixin",
+		"IconHoverEntryMixin",
 		"InventoryScreenMixin",
 		"ItemMixin",
 		"LevelRendererMixin",
 		"LoadingOverlayMixin",
 		"OverlayTextureMixin",
 		"PlayerEntryMixin",
-		"ScreenMixin",
-		"TransferableSelectionList_PackEntryMixin",
-		"WorldSelectionListMixin"
+		"ScreenMixin"
 	]
 }
