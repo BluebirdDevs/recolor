@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(DrawContext.class)
 public class GuiGraphicsExtractorMixin {
-    @ModifyArg(method = "drawCooldownProgress", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;fill(Lcom/mojang/blaze3d/pipeline/RenderPipeline;IIIII)V"), index = 5)
+    @ModifyArg(method = "drawCooldownProgress", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;fill(Lnet/minecraft/client/render/RenderLayer;IIIIII)V"), index = 6)
     private int colorCooldown(int color) {
         return Colors.cooldown;
     }

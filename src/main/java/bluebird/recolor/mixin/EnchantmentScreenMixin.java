@@ -8,12 +8,12 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(EnchantmentScreen.class)
 public class EnchantmentScreenMixin {
-    @ModifyArg(method = "drawBackground", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V"), index = 4)
+    @ModifyArg(method = "drawBackground", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)I"), index = 4)
     public int changeXpColor(int color) {
-        if (color == -12550384) {
+        if (color == 4226832) {
             // Darken color when unavailable
             return ((Colors.xpText & 0xFEFEFE) >> 1) | 0xFF000000;
-        } else if (color == -8323296) {
+        } else if (color == 8453920) {
             return Colors.xpText;
         }
         return color;

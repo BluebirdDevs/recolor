@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
         CreativeInventoryScreen.class
 })
 public class InventoryScreenMixin {
-    @ModifyArg(method = "drawForeground", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawText(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;IIIZ)V"), index = 4)
+    @ModifyArg(method = "drawForeground", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawText(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;IIIZ)I"), index = 4)
     public int extractLabels(int color) {
         return Colors.containerTitle;
     }

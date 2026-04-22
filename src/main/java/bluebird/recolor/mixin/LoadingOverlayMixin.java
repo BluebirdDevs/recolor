@@ -3,24 +3,23 @@ package bluebird.recolor.mixin;
 import bluebird.recolor.Colors;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArgs;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 import java.util.function.IntSupplier;
 import net.minecraft.client.gui.screen.SplashOverlay;
 
 @Mixin(SplashOverlay.class)
 public class LoadingOverlayMixin {
-    @ModifyArgs(
+    @ModifyArg(
             method = "render",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;fill(IIIII)V")
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;fill(Lnet/minecraft/client/render/RenderLayer;IIIII)V"), index = 5
     )
-    public void test(Args args) {
-        if (((int) args.get(4) & 0xFFFFFF) == 0) {
-            args.set(4, Colors.loadingScreenMonochrome);
+    public int test(int og) {
+        if ((og & 0xFFFFFF) == 0) {
+            return Colors.loadingScreenMonochrome;
         }
-        else args.set(4, Colors.loadingScreen);
+        else return Colors.loadingScreen;
     }
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Ljava/util/function/IntSupplier;getAsInt()I", ordinal = 2))

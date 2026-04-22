@@ -12,12 +12,12 @@ public class AnvilScreenMixin {
             method = "drawForeground",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/DrawContext;drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)V"),
+                    target = "Lnet/minecraft/client/gui/DrawContext;drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)I"),
             index = 4)
     public int recolors$ChangeAnvilTextColor(int og){
-        if (og == -8323296) {
+        if (og == 8453920) {
             return Colors.xpText;
-        } else if (og == -40864) {
+        } else if (og == 16736352) {
             return Colors.xpAnvilTextFail;
         }
         return og;

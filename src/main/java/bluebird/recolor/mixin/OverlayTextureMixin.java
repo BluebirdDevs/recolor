@@ -1,7 +1,7 @@
 package bluebird.recolor.mixin;
 
 import bluebird.recolor.Colors;
-import com.mojang.blaze3d.textures.GpuTextureView;
+import com.mojang.blaze3d.textures.GpuTexture;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
@@ -21,8 +21,8 @@ public class OverlayTextureMixin {
     @Unique
     private int lastColor;
 
-    @ModifyArg(method = "setupOverlayColor", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setupOverlayColor(Lcom/mojang/blaze3d/textures/GpuTextureView;)V"))
-    public GpuTextureView recolor$getTextureView(GpuTextureView gpuTextureView) {
+    @ModifyArg(method = "setupOverlayColor", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setupOverlayColor(Lcom/mojang/blaze3d/textures/GpuTexture;)V"))
+    public GpuTexture recolor$getTextureView(GpuTexture gpuTextureView) {
         if (lastColor == Colors.damageColor) {
             return gpuTextureView;
         }
