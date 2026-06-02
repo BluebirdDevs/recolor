@@ -2,7 +2,7 @@ package bluebird.recolor.mixin;
 
 import bluebird.recolor.Colors;
 //? if >= 26.2 {
-/*import net.minecraft.client.gui.contextualbar.ContextualBar;
+/*import net.minecraft.client.gui.contextualbar.ContextualBarRenderer;
 *///?} else if >= 1.21.6 {
 import net.minecraft.client.gui.contextualbar.ContextualBarRenderer;
 //?} else {
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 //? if >= 26.2 {
-/*@Mixin(ContextualBar.class)
+/*@Mixin(ContextualBarRenderer.class)
 public interface ContextualBarRendererMixin {
 *///?} else if >= 1.21.6 {
 @Mixin(ContextualBarRenderer.class)
