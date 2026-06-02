@@ -3,7 +3,7 @@ package bluebird.recolor.mixin;
 import bluebird.recolor.Colors;
 import com.mojang.blaze3d.platform.NativeImage;
 //? if >= 1.21.5 {
-import com.mojang.blaze3d.textures.GpuTexture;
+import com.mojang.blaze3d.textures.GpuTextureView;
 //?} else {
 /*import bluebird.recolor.ReloadListener;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -38,8 +38,8 @@ public class OverlayTextureMixin {
     //?}
 
     //? if >= 1.21.11 {
-    /*@Inject(method = "getTextureView", at = @At(value = "HEAD"))
-    public void recolor$getTextureView(CallbackInfoReturnable<GpuTexture> cir) {
+    @Inject(method = "getTextureView", at = @At(value = "HEAD"))
+    public void recolor$getTextureView(CallbackInfoReturnable<GpuTextureView> cir) {
         if (lastColor == Colors.damageColor) {
             return; // Don't update every tick
         }
@@ -52,9 +52,9 @@ public class OverlayTextureMixin {
         this.texture.upload();
         lastColor = Colors.damageColor;
     }
-    *///?} else if >= 1.21.5 {
-    @ModifyArg(method = "setupOverlayColor", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setupOverlayColor(Lcom/mojang/blaze3d/textures/GpuTexture;)V"))
-    public GpuTexture recolor$getTextureView(GpuTexture gpuTextureView) {
+    //?} else if >= 1.21.5 {
+    /*@ModifyArg(method = "setupOverlayColor", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setupOverlayColor(Lcom/mojang/blaze3d/textures/GpuTextureView;)V"))
+    public GpuTextureView recolor$getTextureView(GpuTextureView gpuTextureView) {
         if (lastColor == Colors.damageColor) {
             return gpuTextureView;
         }
@@ -69,7 +69,7 @@ public class OverlayTextureMixin {
         lastColor = Colors.damageColor;
         return gpuTextureView;
     }
-    //?} else {
+    *///?} else {
     /*@Inject(method = "<init>", at = @At(value = "TAIL"))
     public void recolor$addReloader(CallbackInfo ci) {
         ReloadListener.addListener(this);

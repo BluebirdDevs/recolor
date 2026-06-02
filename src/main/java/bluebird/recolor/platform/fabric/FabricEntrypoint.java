@@ -2,7 +2,7 @@ package bluebird.recolor.platform.fabric;
 
 //? fabric {
 
-/*import bluebird.recolor.Main;
+import bluebird.recolor.Main;
 import dev.kikugie.fletching_table.annotation.fabric.Entrypoint;
 import net.fabricmc.api.ModInitializer;
 
@@ -15,4 +15,4 @@ public class FabricEntrypoint implements ModInitializer {
 		FabricEventSubscriber.registerEvents();
 	}
 }
-*///?}
+//?}

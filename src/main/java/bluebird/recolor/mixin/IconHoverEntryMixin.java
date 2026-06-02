@@ -15,12 +15,12 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 })
 public class IconHoverEntryMixin {
     //? if >= 26.1 {
-    /*@ModifyArg(method = "extractContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;fill(IIIII)V"), index = 4)
-    *///?} else if >= 1.21.9 {
+    @ModifyArg(method = "extractContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;fill(IIIII)V"), index = 4)
+    //?} else if >= 1.21.9 {
     /*@ModifyArg(method = "renderContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;fill(IIIII)V"), index = 4)
     *///?} else {
-    @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;fill(IIIII)V"), index = 4)
-    //?}
+    /*@ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;fill(IIIII)V"), index = 4)
+    *///?}
     private int modifyColor(int color) {
         if (color == -1601138544) {
             return Colors.previewIconHover;

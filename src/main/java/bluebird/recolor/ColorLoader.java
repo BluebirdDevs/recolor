@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 //? <= 1.21.1 {
@@ -24,7 +24,7 @@ import java.util.Map;
 public class ColorLoader {
     private static final Map<Field, Integer> DEFAULT_VALUES = new HashMap<>();
 
-    public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "colors.json");
+    public static final Identifier LOCATION = Identifier.fromNamespaceAndPath(Main.MOD_ID, "colors.json");
     private static final Map<String, Field> FIELD_MAP = new HashMap<>();
 
     static {

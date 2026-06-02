@@ -1,23 +1,29 @@
 package bluebird.recolor.mixin;
 
 import bluebird.recolor.Colors;
-//? if >= 1.21.6 {
-/*import net.minecraft.client.gui.contextualbar.ContextualBarRenderer;
-*///?} else {
-import net.minecraft.client.gui.Gui;
-//?}
+//? if >= 26.2 {
+/*import net.minecraft.client.gui.contextualbar.ContextualBar;
+*///?} else if >= 1.21.6 {
+import net.minecraft.client.gui.contextualbar.ContextualBarRenderer;
+//?} else {
+/*import net.minecraft.client.gui.Gui;
+*///?}
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-//? if >= 1.21.6 {
-/*@Mixin(ContextualBarRenderer.class)
+
+//? if >= 26.2 {
+/*@Mixin(ContextualBar.class)
 public interface ContextualBarRendererMixin {
-*///?} else {
-@Mixin(Gui.class)
+*///?} else if >= 1.21.6 {
+@Mixin(ContextualBarRenderer.class)
+public interface ContextualBarRendererMixin {
+//?} else {
+/*@Mixin(Gui.class)
 public class ContextualBarRendererMixin {
-//?}
-    //? if >= 26.1 {
-    /*@ModifyArg(
+*///?}
+//? if >= 26.1 {
+    @ModifyArg(
             method = "extractExperienceLevel",
             at = @At(
                     value = "INVOKE",
@@ -31,7 +37,7 @@ public class ContextualBarRendererMixin {
         }
         return x;
     }
-    *///?} else if >= 1.21.6 {
+    //?} else if >= 1.21.6 {
     /*@ModifyArg(
             method = "renderExperienceLevel",
             at = @At(
@@ -47,7 +53,7 @@ public class ContextualBarRendererMixin {
         return x;
     }
     *///?} else {
-    @ModifyArg(
+    /*@ModifyArg(
             method = "renderExperienceLevel",
             at = @At(
                     value = "INVOKE",
@@ -61,6 +67,6 @@ public class ContextualBarRendererMixin {
         }
         return x;
     }
-    //?}
+    *///?}
 
 }

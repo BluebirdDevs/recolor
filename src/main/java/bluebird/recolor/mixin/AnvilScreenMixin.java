@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(AnvilScreen.class)
 public class AnvilScreenMixin {
     //? if >= 26.1 {
-    /*@ModifyArg(
+    @ModifyArg(
             method = "extractLabels",
             at = @At(
                     value = "INVOKE",
@@ -23,7 +23,7 @@ public class AnvilScreenMixin {
         }
         return og;
     }
-    *///?} else if >= 1.21.6 {
+    //?} else if >= 1.21.6 {
     /*@ModifyArg(
             method = "renderLabels",
             at = @At(
@@ -39,7 +39,7 @@ public class AnvilScreenMixin {
         return og;
     }
     *///?} else {
-    @ModifyArg(
+    /*@ModifyArg(
             method = "renderLabels",
             at = @At(
                     value = "INVOKE",
@@ -53,5 +53,5 @@ public class AnvilScreenMixin {
         }
         return og;
     }
-    //?}
+    *///?}
 }

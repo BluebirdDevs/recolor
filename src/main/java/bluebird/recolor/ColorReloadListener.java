@@ -14,13 +14,13 @@ public class ColorReloadListener implements ResourceManagerReloadListener {
 }
 //?} else {
 /*import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
 
 public class ColorReloadListener implements SimpleSynchronousResourceReloadListener {
     @Override
-    public ResourceLocation getFabricId() {
-        return ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "recolor");
+    public Identifier getFabricId() {
+        return Identifier.fromNamespaceAndPath(Main.MOD_ID, "recolor");
     }
 
     @Override
