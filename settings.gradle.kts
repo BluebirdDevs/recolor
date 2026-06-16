@@ -36,16 +36,16 @@ stonecutter {
 			}
 		}
 
-		match("26.2", "fabric")
+		match("26.2", "fabric", "neoforge")
 		match("26.1", "fabric", "forge", "neoforge")
 
-		match("1.21.11", "fabric", "forge", "neoforge")
-		match("1.21.9", "fabric", "forge", "neoforge")
-		match("1.21.6", "fabric", "forge", "neoforge")
-		match("1.21.5", "fabric", "forge", "neoforge")
-		match("1.21.4", "fabric", "forge", "neoforge")
-		match("1.21.2", "fabric", "forge", "neoforge")
-		match("1.21", "fabric", "forge", "neoforge")
+//		match("1.21.11", "fabric", "forge", "neoforge")
+//		match("1.21.9", "fabric", "forge", "neoforge")
+//		match("1.21.6", "fabric", "forge", "neoforge")
+//		match("1.21.5", "fabric", "forge", "neoforge")
+//		match("1.21.4", "fabric", "forge", "neoforge")
+//		match("1.21.2", "fabric", "forge", "neoforge")
+//		match("1.21", "fabric", "forge", "neoforge")
 
 		vcsVersion = "26.1-fabric"
 	}

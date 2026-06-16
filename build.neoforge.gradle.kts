@@ -64,7 +64,4 @@ stonecutter {
 		replace("ResourceLocation", "Identifier")
 		replace("location()", "identifier()")
 	}
-	replacements.string(current.parsed >= "26.2") {
-		replace("ContextualBarRenderer", "ContextualBar")
-	}
 }
